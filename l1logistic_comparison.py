@@ -51,19 +51,19 @@ def algorithm_testing(alg, resolvent, grad, xzero, pars, data, tols, num: int, n
     :param num: index of the dataset in the dictionary are we running
     :param nam: which dataset in the dictionary are we running
     """
-    # --- Run PGEXTRA ---
-    results = {'dataset': nam, 'res_it': [0.], 'res_err': [0.], 'res_time': [0.], 'rel_it': [0.], 'rel_err': [0.], 'rel_time': [0.],
-                'con_it': [0.], 'con_err': [0.], 'con_time': [0.]}
+    # Run algorithm
+    results = {'dataset': nam, 'res_it': [0.], 'res_time': [0.], 'rel_it': [0.], 'rel_time': [0.],
+                'con_it': [0.], 'con_time': [0.]}
     for met in tols:
         tol = tols[met]
-        results[f'{met}_it'][0], results[f'{met}_err'][0], results[f'{met}_time'][0] = alg(xzero, resolvent, grad, pars, met, tol, data)
+        results[f'{met}_it'][0], results[f'{met}_time'][0] = alg(xzero, resolvent, grad, pars, met, tol, data)
     print()
     
-    df = pandas.DataFrame(results) # Append PGEXTRA results to excel file
+    df = pandas.DataFrame(results) # Append algorithm results to excel file
     with pandas.ExcelWriter(fname, engine='openpyxl', mode='a',if_sheet_exists='overlay') as writer:
         sheet_name = alg.__name__
         if alg.__name__ == 'gf_pgextra':
-            sheet_name += f'_eta{pars['eta']}_alp{int(pars['alpha'](0))}'   # append \eta and \alpha_0 to name for excel sheet
+            sheet_name += f'_eta{pars['eta']}_alp{int(pars['alpha'](0))}'   # append parameters \eta and \alpha_0 to name for excel sheet
 
         if num==0:
             df.to_excel(writer,sheet_name=sheet_name, header=True, index_label=num)
