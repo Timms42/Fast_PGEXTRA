@@ -1,5 +1,5 @@
 # Code for numerical experiments
-## For details, see [Pu, Timms, and Tam, _ArXiv preprint_, 2026](https://arxiv.org/abs/)
+## For details, see [Pu, Timms, and Tam, _ArXiv preprint_, 2026](https://arxiv.org/abs/2611.13521)
 _Generating figures_
 * algorithms.py - contains the PG-EXTRA algorithm [Shi, Ling, Wu, and Yin (2015)], the NIDS algorithm [Li, Shi, and Yan (2019)], and Algorithms 1 and 2 in Pu, Timms, and Tam (2026)
 * psse.ipynb - generates results for one instance of the distributed power system estimation problem in Section 4.1
